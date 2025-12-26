@@ -1,0 +1,209 @@
+Build a production-ready, full-stack AI application that allows users to control ANY game (FPS, strategy, card games like Clash Royale, racing, casual games, browser games, Android games) using hand gestures, without modifying the game.
+
+🎯 Core Goals
+
+Universal gesture-based control for all game types
+
+Works on Web + Android
+
+Uses ML-based gesture recognition
+
+Converts gestures → touch / mouse / keyboard inputs
+
+Low latency, real-time performance
+
+🧠 Gesture Recognition (ML-Based)
+Step 1: Hand Tracking
+
+Use MediaPipe Hands
+
+Extract 21 hand landmarks
+
+Normalize coordinates (scale & rotation invariant)
+
+Step 2: Feature Engineering
+
+Joint angles
+
+Relative distances
+
+Motion vectors (for dynamic gestures)
+
+Gesture duration
+
+Step 3: ML Model
+
+Static gestures → CNN
+
+Dynamic gestures → LSTM
+
+Output: gesture label + confidence
+
+Trainable & extensible
+
+🧪 Training Pipeline
+
+Dataset collection mode
+
+Auto-label gestures
+
+Save dataset locally
+
+Train model using TensorFlow
+
+Export:
+
+TensorFlow Lite (Android)
+
+TensorFlow.js (Web)
+
+🎮 Universal Gesture → Input Mapping
+
+Support these input abstractions:
+
+Tap
+
+Long press
+
+Drag
+
+Multi-touch
+
+Swipe
+
+Virtual joystick
+
+Keyboard & mouse
+
+Example: Clash Royale
+
+Point + Tap → Select card
+
+Drag → Place unit
+
+Pinch → Zoom
+
+Fist → Cancel
+
+Example: FPS
+
+Point → Shoot
+
+Palm rotate → Aim
+
+Swipe → Move
+
+Raise hand → Jump
+
+📱 Android App
+
+Camera access
+
+On-device TFLite inference
+
+Accessibility Service for touch injection
+
+Floating controller overlay
+
+Game profile selector
+
+Sensitivity calibration
+
+🌐 Web App
+
+React + TypeScript
+
+WebRTC camera stream
+
+TensorFlow.js inference
+
+Keyboard/mouse control
+
+Browser game compatibility
+
+🧩 System Architecture
+Camera
+ ↓
+MediaPipe Hands
+ ↓
+ML Gesture Model
+ ↓
+Gesture Action Engine
+ ↓
+Input Injection Layer
+
+🖥️ Optional PC Bridge
+
+Python + FastAPI
+
+WebSocket server
+
+Mouse/keyboard injection
+
+Multi-device pairing
+
+🧠 Advanced Features
+
+Per-game gesture profiles
+
+Custom gesture training
+
+Confidence-based filtering
+
+Gesture macros
+
+Voice + gesture hybrid
+
+Low-light optimization
+
+🔐 Security
+
+Local-only processing
+
+No cloud video storage
+
+Explicit permissions
+
+Sandbox-safe design
+
+📦 Deliverables
+
+Web app
+
+Android app
+
+ML training code
+
+Pre-trained models
+
+Demo games (FPS + Clash Royale-like)
+
+Documentation & README
+
+🛠️ Tech Stack
+
+Python
+
+TensorFlow / TensorFlow Lite / TensorFlow.js
+
+MediaPipe
+
+React + TypeScript
+
+Android (Kotlin / Java)
+
+FastAPI
+
+WebSockets
+
+📌 Replit AI Instructions
+
+Generate clean, modular code
+
+Use clear folder structure
+
+Add comments & README
+
+Ensure code runs on Replit
+
+Focus on extensibility & performance
