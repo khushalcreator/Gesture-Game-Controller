@@ -53,7 +53,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </>
             ) : (
               <Link href="/login">
-                <Button variant="neon" size="sm">
+                <Button size="sm">
                   <Terminal className="w-4 h-4 mr-2" />
                   CONNECT
                 </Button>

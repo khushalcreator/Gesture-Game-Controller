@@ -158,8 +158,8 @@ export default function ProfileEditor() {
                   <h3 className="text-lg font-display text-white flex items-center gap-2">
                     <Keyboard className="w-4 h-4 text-primary" /> NEURAL MAPPING
                   </h3>
-                  <Button type="button" variant="neon" size="sm" onClick={addMapping} className="text-xs h-8">
-                    <PlusCircle className="w-3 h-3 mr-2" /> ADD LINK
+                  <Button type="button" size="sm" onClick={addMapping} className="text-xs h-8 gap-1">
+                    <PlusCircle className="w-3 h-3" /> ADD LINK
                   </Button>
                 </div>
                 
