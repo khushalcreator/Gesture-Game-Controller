@@ -115,5 +115,44 @@ export async function registerRoutes(
     res.sendStatus(204);
   });
 
+  // Seed Data Endpoint (Private/Internal or run on start if needed)
+  // For simplicity, we'll check and seed on a special debug endpoint or let the user create one.
+  // Actually, let's just expose a seed endpoint for the demo.
+  app.post("/api/seed", async (req, res) => {
+    if (!req.isAuthenticated()) return res.sendStatus(401);
+    
+    // Check if user already has profiles
+    const profiles = await storage.getGameProfiles(req.user!.id);
+    if (profiles.length === 0) {
+      await storage.createGameProfile({
+        userId: req.user!.id,
+        name: "Minecraft",
+        description: "Standard controls for Minecraft",
+        keyMappings: {
+          "Fist": "W",
+          "Open_Palm": "Space",
+          "Pointing_Up": "Click"
+        },
+        settings: { sensitivity: 1.0, smoothFactor: 0.5 },
+        isActive: true
+      });
+      await storage.createGameProfile({
+        userId: req.user!.id,
+        name: "Clash Royale",
+        description: "Touch emulation for card deployment",
+        keyMappings: {
+          "Pointing_Up": "Tap",
+          "Open_Palm": "Scroll",
+          "Fist": "Select"
+        },
+        settings: { sensitivity: 1.2, smoothFactor: 0.7 },
+        isActive: true
+      });
+      res.json({ message: "Seeded successfully" });
+    } else {
+      res.json({ message: "Already seeded" });
+    }
+  });
+
   return httpServer;
 }
