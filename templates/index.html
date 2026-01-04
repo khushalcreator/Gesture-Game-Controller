@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GestureNEO Controller</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                </svg>
+                Gesture<span>NEO</span>
+            </div>
+            <div class="status-indicator" id="status-indicator">SYSTEM READY</div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Left: Vision Feed -->
+            <div class="video-container">
+                <img src="{{ url_for('video_feed') }}" alt="Webcam Feed">
+                <div class="overlay">
+                    <div class="gesture-pill">
+                        <span class="label">Detected Navigation</span>
+                        <span class="value" id="gesture-value">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Control Deck -->
+            <div class="panel-column">
+
+                <!-- System Controls -->
+                <div class="card">
+                    <h3 class="card-title">System Control</h3>
+                    <div style="margin-bottom: 15px;">
+                        <label for="profile-select"
+                            style="display:block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 5px;">GAME
+                            MODE</label>
+                        <select id="profile-select"
+                            style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color); background: rgba(0,0,0,0.3); color: white; cursor: pointer;">
+                            <option value="Racing" selected>Racing (Sim)</option>
+                            <option value="FPS">FPS (Shooter)</option>
+                            <option value="Platformer">Platformer (2D)</option>
+                        </select>
+                    </div>
+                    <div class="btn-group">
+                        <button id="btn-start" class="btn btn-primary">INITIALIZE</button>
+                        <button id="btn-stop" class="btn btn-danger">TERMINATE</button>
+                    </div>
+                </div>
+
+                <!-- Active Mappings -->
+                <div class="card" style="flex: 1;">
+                    <button class="card-title"
+                        style="background:none; border:none; width:100%; text-align:left; cursor: pointer; padding:0;"
+                        onclick="this.nextElementSibling.classList.toggle('hidden')">
+                        Active Protocol Mappings ▾
+                    </button>
+                    <div class="mappings-grid">
+                        <div class="mapping-item">
+                            <span class="mapping-icon">✋</span>
+                            <span class="mapping-label">Forward</span>
+                            <span class="mapping-key">W</span>
+                        </div>
+                        <div class="mapping-item">
+                            <span class="mapping-icon">✊</span>
+                            <span class="mapping-label">Reverse</span>
+                            <span class="mapping-key">S</span>
+                        </div>
+                        <div class="mapping-item">
+                            <span class="mapping-icon">✌️</span>
+                            <span class="mapping-label">Jump</span>
+                            <span class="mapping-key">Space</span>
+                        </div>
+                        <div class="mapping-item">
+                            <span class="mapping-icon">👉</span>
+                            <span class="mapping-label">Right</span>
+                            <span class="mapping-key">D</span>
+                        </div>
+                        <div class="mapping-item">
+                            <span class="mapping-icon">🤟</span>
+                            <span class="mapping-label">Left</span>
+                            <span class="mapping-key">A</span>
+                        </div>
+                        <div class="mapping-item">
+                            <span class="mapping-icon">👍</span>
+                            <span class="mapping-label">Fire</span>
+                            <span class="mapping-key">Click</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Training Mode (Collapsible or Compact) -->
+                <div class="card">
+                    <h3 class="card-title">Neural Training</h3>
+                    <input type="text" id="gesture-name" placeholder="Enter Label ID...">
+                    <div class="btn-group">
+                        <button id="btn-record" class="btn" style="background: rgba(255,255,255,0.1);">REC
+                            SAMPLE</button>
+                        <button id="btn-train" class="btn" style="background: var(--success); color: #000;">TRAIN
+                            NET</button>
+                    </div>
+                    <div id="training-status" style="font-size: 0.8rem; color: var(--text-muted); text-align: center;">
+                        Waiting for input...</div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        // Keep-alive script
+        setInterval(() => {
+            const img = document.querySelector('.video-container img');
+            if (img.complete && img.naturalHeight === 0) {
+                img.src = "{{ url_for('video_feed') }}?" + new Date().getTime();
+            }
+        }, 5000);
+    </script>
+</body>
+
+</html>
