@@ -1,3 +1,4 @@
+
 # Gesture NEO 🎮✋
 
 **Play video games without a keyboard. Your hands are the controller.**
@@ -30,8 +31,8 @@ Gesture NEO is a real-time, AI-powered gesture control interface that translates
 
 1.  **Clone the repository**
     ```bash
-    git clone https://github.com/yourusername/gesture-neo.git
-    cd gesture-neo
+    git clone https://github.com/khushalcreator/Gesture-Game-Controller.git
+    cd Gesture-Game-Controller
     ```
 
 2.  **Install dependencies**
